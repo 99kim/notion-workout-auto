@@ -35,7 +35,7 @@ def update_weekly_counts():
     group_counts = defaultdict(list)
     for page in pages:
         try:
-            key = page["properties"]["작성자+주차 키"]["formula"]["string"]
+            key = page["properties"]["작성자+주차"]["formula"]["string"]
             page_id = page["id"]
             group_counts[key].append(page_id)
         except KeyError:
