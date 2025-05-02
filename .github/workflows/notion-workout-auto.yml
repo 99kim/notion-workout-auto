@@ -22,5 +22,8 @@ jobs:                                # 4
    #     env:                         # 13
    #       DRY_RUN: true
       - name: Run Notion updater     # 14
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          DATABASE_ID: ${{ secrets.DATABASE_ID }}
         run: |
           python notion_weekly_count_updater_v2_safe.py
