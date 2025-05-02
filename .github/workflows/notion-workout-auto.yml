@@ -18,8 +18,9 @@ jobs:                                # 4
       - name: Install dependencies   # 11
         run: pip install requests
 
-      - name: Dry run test           # 12
-        env:                         # 13
-          DRY_RUN: true
+   #   - name: Dry run test           # 12
+   #     env:                         # 13
+   #       DRY_RUN: true
+      - name: Run Notion updater     # 14
         run: |
           python notion_weekly_count_updater_v2_safe.py
