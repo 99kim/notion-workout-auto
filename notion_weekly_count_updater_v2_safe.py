@@ -21,8 +21,18 @@ def get_all_pages():
 
     while has_more:
         data = {"start_cursor": next_cursor} if next_cursor else {}
-        response = requests.post(url, headers=headers, json=data).json()
+  #      response = requests.post(url, headers=headers, json=data).json()
+  #      pages.extend(response["results"])
+
+        res = requests.post(url, headers=headers, json=data)
+
+        # ⬇️ 디버깅 출력 추가
+        print("📦 API 상태 코드:", res.status_code)
+        print("📦 API 응답 내용:", res.text)
+
+        response = res.json()
         pages.extend(response["results"])
+
         has_more = response.get("has_more", False)
         next_cursor = response.get("next_cursor")
 
