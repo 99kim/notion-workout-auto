@@ -56,9 +56,9 @@ def update_weekly_counts():
             res = requests.patch(update_url, headers=headers, json=update_data)
             print(f"Updated {pid} with count {count} - Status: {res.status_code}")
 
-if os.getenv("DRY_RUN") == "true":
-    print("🔧 DRY RUN MODE: Not calling Notion API.")
-    exit(0)
+#if os.getenv("DRY_RUN") == "true":
+#    print("🔧 DRY RUN MODE: Not calling Notion API.")
+#    exit(0)
 
 
 if __name__ == "__main__":
