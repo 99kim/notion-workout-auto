@@ -1,27 +1,31 @@
-name: Notion Weekly Updater          # 1
-on:                                  # 2
-  workflow_dispatch:                 # 3
+name: Notion Weekly Updater
 
-jobs:                                # 4
-  update-notion:                     # 5
-    runs-on: ubuntu-latest           # 6
+on:
+  schedule:
+    - cron: '0 18 * * *'  # 매일 오전 3시 (KST 기준)
+  workflow_dispatch:
 
-    steps:                           # 7
-      - name: Checkout repo          # 8
-        uses: actions/checkout@v3    # 9
+jobs:
+  update-notion:
+    runs-on: ubuntu-latest
 
-      - name: Set up Python          # 10
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
 
-      - name: Install dependencies   # 11
+      - name: Install dependencies
         run: pip install requests
 
-   #   - name: Dry run test           # 12
-   #     env:                         # 13
+   #   - name: Dry run test
+   #     env:
    #       DRY_RUN: true
-      - name: Run Notion updater     # 14
+
+      - name: Run Notion updater
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           DATABASE_ID: ${{ secrets.DATABASE_ID }}
